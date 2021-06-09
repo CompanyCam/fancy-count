@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require 'spec_helper'
+
+require "spec_helper"
 
 RSpec.describe FancyCount do
   it "has a version number" do

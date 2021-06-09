@@ -2,7 +2,6 @@
 
 module FancyCount
   class Counter
-
     def initialize(name, config = nil)
       @name = name
       @config = config || ::FancyCount.config
@@ -34,8 +33,8 @@ module FancyCount
 
     private
 
-      def adapter
-        @adapter ||= @config.adapter_class.new(@name)
-      end
+    def adapter
+      @adapter ||= @config.adapter_class.new(@name)
+    end
   end
 end

@@ -32,8 +32,8 @@ module FancyCount
 
     private
 
-      def counter
-        raise 'Not yet implemented'
-      end
+    def counter
+      raise "Not yet implemented"
+    end
   end
 end

@@ -3,15 +3,15 @@
 require_relative "lib/fancy_count/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "fancy_count"
-  spec.version       = FancyCount::VERSION
-  spec.authors       = ["CompanyCam Engineering"]
-  spec.email         = ["engineering@companycam.com"]
+  spec.name = "fancy_count"
+  spec.version = FancyCount::VERSION
+  spec.authors = ["CompanyCam Engineering"]
+  spec.email = ["engineering@companycam.com"]
 
-  spec.summary       = "Yet Another Counter Library"
-  spec.description   = "A small library to count things. Use Redis, Memory, or bring your own storage!"
-  spec.homepage      = "https://companycam.com"
-  spec.license       = "MIT"
+  spec.summary = "Yet Another Counter Library"
+  spec.description = "A small library to count things. Use Redis, Memory, or bring your own storage!"
+  spec.homepage = "https://companycam.com"
+  spec.license = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
 
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
@@ -25,14 +25,15 @@ Gem::Specification.new do |spec|
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{\A(?:test|spec|features)/}) }
   end
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.bindir = "exe"
+  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
   spec.add_dependency "activerecord", ">= 4.2", "< 7"
   spec.add_dependency "activesupport", ">= 4.2", "< 7"
   spec.add_dependency "discard", ">= 1.0"
   spec.add_development_dependency "bundler"
+  spec.add_development_dependency "standard"
   spec.add_development_dependency "rake", ">= 10.0"
   spec.add_development_dependency "rspec", ">= 3.5.0"
   spec.add_development_dependency "database_cleaner-active_record", "~> 2.0"

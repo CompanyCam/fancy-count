@@ -11,7 +11,12 @@ require_relative "fancy_count/counter_cacheable"
 
 module FancyCount
   class Error < StandardError; end
+
   class MissingAdapterError < Error; end
+
+  class UnknownCounterError < StandardError; end
+
+  class MissingLogicError < StandardError; end
 
   def self.configure
     yield config if block_given?

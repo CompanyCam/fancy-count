@@ -14,7 +14,7 @@ module FancyCount
     }
 
     def self.adapter=(value)
-      if ADAPTER_CLASSES.keys.include?(value.to_sym)
+      if ADAPTER_CLASSES.key?(value.to_sym)
         super(value)
       else
         raise_missing_adapter_error(value)
@@ -28,7 +28,7 @@ module FancyCount
     private
 
     def raise_missing_adapter_error(adapter_name)
-      message = "Missing adapter for #{adapter_name}, valid adapters are #{ADAPTER_CLASSES.keys.join('')}"
+      message = "Missing adapter for #{adapter_name}, valid adapters are #{ADAPTER_CLASSES.keys.join("")}"
       raise FancyCount::MissingAdapterError.new(message)
     end
   end

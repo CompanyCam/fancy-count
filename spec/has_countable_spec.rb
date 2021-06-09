@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 RSpec.describe FancyCount::HasCountable do
   before do
@@ -43,8 +43,8 @@ RSpec.describe FancyCount::HasCountable do
       include FancyCount::HasCountable
 
       fancy_counter :words_written,
-        compute_on_missing: true,
-        compute_logic: :fancy_words_written_calculation
+        reconcile_on_missing: true,
+        reconcile_logic: :fancy_words_written_calculation
 
       def fancy_words_written_calculation
         99
@@ -55,7 +55,7 @@ RSpec.describe FancyCount::HasCountable do
   let!(:novelist) { Novelist.create!(name: "Earnest Hemmingway") }
   let!(:writer) { Writer.create!(name: "R.A. Salvator") }
 
-  it 'exposes the counter behaviors' do
+  it "exposes the counter behaviors" do
     expect(novelist.fancy_words_written_count).to eq(0)
 
     novelist.fancy_words_written_counter.increment
@@ -71,7 +71,7 @@ RSpec.describe FancyCount::HasCountable do
     expect(novelist.fancy_words_written_count).to eq(0)
   end
 
-  it 'uses existing counter values' do
+  it "uses existing counter values" do
     writer1 = Writer.create!(name: "Ed Greenwood")
     writer2 = Writer.create!(name: "Margaret Weiss")
     writer3 = Writer.create!(name: "Tracey Hickman")
@@ -87,23 +87,23 @@ RSpec.describe FancyCount::HasCountable do
     end
   end
 
-  it 'can lazily compute/build counts that do not exist' do
+  it "can lazily compute/build counts that do not exist" do
     writer1 = Writer.create!(name: "Ed Greenwood")
     writer2 = Writer.create!(name: "Margaret Weiss")
     writer3 = Writer.create!(name: "Tracey Hickman")
     writers = [writer1, writer2, writer3]
 
-    Writer.find_each do |writer|
+    writers.each do |writer|
       expect(writer.fancy_words_written_count).to eq(99)
     end
 
     # Novelists do not lazy load
-    Novelist.find_each do |writer|
-      expect(writer.fancy_words_written_count).to eq(0)
+    Novelist.find_each do |novelist|
+      expect(novelist.fancy_words_written_count).to eq(0)
     end
   end
 
-  it 'can reconcile a counter on the instance' do
+  it "can reconcile a counter on the instance" do
     writer1 = Writer.create!(name: "Ed Greenwood")
     writer2 = Writer.create!(name: "Margaret Weiss")
     writer3 = Writer.create!(name: "Tracey Hickman")
@@ -120,7 +120,7 @@ RSpec.describe FancyCount::HasCountable do
     end
   end
 
-  it 'can reconcile a counter on a collection' do
+  it "can reconcile a counter on a collection" do
     writer1 = Writer.create!(name: "Ed Greenwood")
     writer2 = Writer.create!(name: "Margaret Weiss")
     writer3 = Writer.create!(name: "Tracey Hickman")

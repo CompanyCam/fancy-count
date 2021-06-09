@@ -58,13 +58,13 @@ module FancyCount
         count_method_name = "fancy_#{name.to_s.singularize}_count"
         lazily_recalculate_counter = false
 
-        self.fancy_counters << { name: name, counter_name: counter_method_name, compute_logic: options[:compute_logic] }
+        fancy_counters << {name: name, counter_name: counter_method_name, reconcile_logic: options[:reconcile_logic]}
 
-        if options[:compute_on_missing] && !options[:compute_logic]
-          raise ArgumentError.new('compute_logic is required')
+        if options[:reconcile_on_missing] && !options[:reconcile_logic]
+          raise ArgumentError.new("reconcile is required")
         end
 
-        if options[:compute_on_missing] && options[:compute_logic]
+        if options[:reconcile_on_missing] && options[:reconcile_logic]
           lazily_recalculate_counter = true
         end
 
@@ -74,7 +74,7 @@ module FancyCount
           counter = ::FancyCount::Counter.new(counter_key)
 
           if lazily_recalculate_counter && current_value.nil?
-            starting_value = send(options[:compute_logic])
+            starting_value = send(options[:reconcile_logic])
             counter.change(starting_value)
           end
 
@@ -111,10 +111,12 @@ module FancyCount
     end
 
     def fancy_counters_reconcile(name)
-      data = self.class.fancy_counters.detect { |entry| entry[:name] == name }
-      return if data.nil? || !data.has_key?(:compute_logic)
+      count_method_name = "fancy_#{name.to_s.singularize}_count"
+      data = self.class.fancy_counters.detect { |entry| entry[:name] == name.to_sym }
+      raise UnknownCounterError.new("#{count_method_name} doesn't exist") if data.nil?
+      raise MissingLogicError.new("#{count_method_name} doesn't have ':reconcile'") unless data.has_key?(:reconcile_logic)
 
-      new_count = send(data[:compute_logic])
+      new_count = send(data[:reconcile_logic])
       public_send(data[:counter_name]).change(new_count)
     end
   end

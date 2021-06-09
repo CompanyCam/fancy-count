@@ -35,7 +35,7 @@ module FancyCount
         counter_method_name = "fancy_#{name.to_s.singularize}_counter"
         association_name = options[:on]
 
-        self.fancy_counter_caches << { name: name, counter_name: counter_method_name, association_name: association_name }
+        fancy_counter_caches << {name: name, counter_name: counter_method_name, association_name: association_name}
 
         after_create do
           fancy_association = public_send(association_name)

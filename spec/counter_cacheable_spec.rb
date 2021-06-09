@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 RSpec.describe FancyCount::CounterCacheable do
   with_model :SuperHero do
@@ -78,7 +78,7 @@ RSpec.describe FancyCount::CounterCacheable do
   let!(:superman) { SuperHero.create(name: "Superman") }
   let!(:batman) { SuperHero.create(name: "Batman") }
 
-  it 'updates the counter cache when records are created and destroyed' do
+  it "updates the counter cache when records are created and destroyed" do
     expect(superman.fancy_super_power_count).to eq(0)
 
     laser_eyes = SuperPower.create!(name: "Laser Eyes", super_hero: superman)
@@ -88,7 +88,7 @@ RSpec.describe FancyCount::CounterCacheable do
     expect(superman.fancy_super_power_count).to eq(0)
   end
 
-  it 'can update the counter cache when records are created and soft-deleted' do
+  it "can update the counter cache when records are created and soft-deleted" do
     expect(batman.fancy_weapon_count).to eq(0)
 
     baterang = Weapon.create!(name: "Baterang", super_hero: batman)
@@ -101,7 +101,7 @@ RSpec.describe FancyCount::CounterCacheable do
     expect(batman.fancy_weapon_count).to eq(1)
   end
 
-  it 'can reconcile counter caches' do
+  it "can reconcile counter caches" do
     SuperPower.create!(super_hero: superman, name: "Super Strength")
     SuperPower.create!(super_hero: superman, name: "Super Speed")
     SuperPower.create!(super_hero: superman, name: "Super Breath")
