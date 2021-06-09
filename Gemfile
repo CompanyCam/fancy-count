@@ -7,7 +7,7 @@ gem "activerecord", rails_version
 
 sqlite_version = ENV["SQLITE_VERSION"]
 
-if sqlite_version.present?
+unless sqlite_version.nil?
   gem "sqlite3", sqlite_version
 end
 

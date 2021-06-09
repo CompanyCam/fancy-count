@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "activerecord", ">= 4.2", "< 7"
   spec.add_dependency "activesupport", ">= 4.2", "< 7"
-  spec.add_dependency "discard", ">= 1.0"
+  spec.add_development_dependency "discard", ">= 1.0"
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "standard"
   spec.add_development_dependency "rake", ">= 10.0"
