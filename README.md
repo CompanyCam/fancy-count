@@ -1,8 +1,10 @@
 # FancyCount
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fancy_count`. To experiment with that code, run `bin/console` for an interactive prompt.
+🎉 Enhanced counter management for your Ruby on Rails app.
 
-TODO: Delete this and the text above, and describe your gem
+[![Build Status](https://github.com/CompanyCam/fancy-count/workflows/Tests/badge.svg)](https://github.com/CompanyCam/fancy-count/actions) [![Gem Version](https://badge.fury.io/rb/fancy-count.svg)](https://badge.fury.io/rb/fancy-count)
+
+
 
 ## Installation
 
@@ -20,10 +22,24 @@ Or install it yourself as:
 
     $ gem install fancy_count
 
+## Configuration
+
+Make sure to define which adapter you want to use to persist the counters.
+
+```ruby
+# config/initializers/fancy_count.rb
+
+require 'fancy_count'
+
+FancyCount.configure do |config|
+  config.adapter = :redis
+end
+```
+
+
 ## Usage
 
-Fancy count is nothing more than a simple counter library with some functionality baked in to manage those counters
-in Redis and manage counter caches (in Rails).
+Fancy count is dead simple to drop in and get going.
 
 Example usage in IRB
 
