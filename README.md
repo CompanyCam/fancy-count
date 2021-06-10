@@ -2,7 +2,7 @@
 
 🎉 Enhanced counter management for your Ruby on Rails app.
 
-[![Build Status](https://github.com/CompanyCam/fancy-count/workflows/Tests/badge.svg)](https://github.com/CompanyCam/fancy-count/actions) [![Gem Version](https://badge.fury.io/rb/fancy-count.svg)](https://badge.fury.io/rb/fancy-count)
+[![Build Status](https://github.com/CompanyCam/fancy-count/workflows/Tests/badge.svg)](https://github.com/CompanyCam/fancy-count/actions) [![Gem Version](https://badge.fury.io/rb/fancy_count.svg)](https://badge.fury.io/rb/fancy_count)
 
 
 
