@@ -22,13 +22,71 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Fancy count is nothing more than a simple counter library with some functionality baked in to manage those counters
+in Redis and manage counter caches (in Rails).
+
+Example usage in IRB
+
+```ruby
+counter = FancyCount::Counter.new('my-counter')
+counter.increment
+counter.value # => 1
+counter.decrement # => 0
+```
+
+Example usage in an ActiveRecord Model
+
+```ruby
+class Company < ApplicationRecord
+  include FancyCount::HasCountable
+
+  fancy_counter :employees
+end
+
+company = Company.new
+company.fancy_employee_count # => 0
+company.fancy_employee_counter.increment
+company.fancy_employee_count # => 1
+```
+
+Example Counter Cache
+
+```ruby
+class Company < ApplicationRecord
+  include FancyCount::HasCountable
+
+  fancy_counter :employees
+end
+
+class Employee < ApplicationRecord
+  include FancyCount::CounterCacheable
+
+  belongs_to :company
+
+  fancy_counter_cache :employees, on: :company
+end
+
+company = Company.first
+company.fancy_employee_count # => 0
+company.employees.create(name: "bob marley")
+company.fancy_employee_count # => 1
+company.employees.destroy_all
+company.fancy_employee_count # => 0
+```
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`.
+
+### Releasing a new version
+
+* install gem-release https://github.com/svenfuchs/gem-release
+* run `gem bump --version patch` if patching (otherwise switch "patch" out for "minor" or "major")
+* run `gem tag 1.x.x` replacing the "x" characters with appropriate values
+* run `git push --tags origin` to push the tags up to Github
+* Finally, run `gem release` which pushes the gem up to whatever repository (ex: Rubygems)
 
 ## Contributing
 

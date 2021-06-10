@@ -28,7 +28,7 @@ module FancyCount
     private
 
     def raise_missing_adapter_error(adapter_name)
-      message = %W{Missing adapter for #{adapter_name}, valid adapters are #{ADAPTER_CLASSES.keys.join(", ")}}
+      message = %W[Missing adapter for #{adapter_name}, valid adapters are #{ADAPTER_CLASSES.keys.join(", ")}]
       raise FancyCount::MissingAdapterError.new(message)
     end
   end
