@@ -52,9 +52,6 @@ namespace :bump do
 
   task :ruby do
     lowest = RubyVersions.lowest_supported
-    lowest_minor = RubyVersions.lowest_supported_minor
-    latest = RubyVersions.latest
-    latest_patches = RubyVersions.latest_supported_patches
 
     replace_in_file "example.gemspec", /ruby_version = .*">= (.*)"/ => lowest
   end
