@@ -16,8 +16,8 @@ module FancyCount
       @@counts = value
     end
 
-    def initialize(name)
-      super(name)
+    def initialize(name, config)
+      super(name, config)
       self.class.counts ||= {}
       self.class.counts[name] ||= 0
     end

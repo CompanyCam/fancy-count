@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe FancyCount::TestAdapter do
-  let(:adapter) { described_class.new("my-counter") }
+  let(:adapter) { described_class.new("my-counter", {}) }
 
   after { described_class.reset }
 

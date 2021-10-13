@@ -4,7 +4,7 @@ require "spec_helper"
 
 RSpec.describe FancyCount::RedisAdapter do
   let(:fake_counter) { double(value: 1) }
-  let(:adapter) { described_class.new("my-counter") }
+  let(:adapter) { described_class.new("my-counter", {}) }
 
   before do
     allow_any_instance_of(described_class).to receive(:counter).and_return(fake_counter)

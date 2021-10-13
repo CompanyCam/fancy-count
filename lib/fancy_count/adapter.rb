@@ -2,8 +2,9 @@
 
 module FancyCount
   class Adapter
-    def initialize(name)
+    def initialize(name, config)
       @name = name
+      @config = config
     end
 
     def increment

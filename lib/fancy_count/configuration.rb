@@ -7,6 +7,7 @@ module FancyCount
     include ActiveSupport::Configurable
 
     config_accessor :adapter
+    config_accessor :expireat
 
     ADAPTER_CLASSES = {
       redis: FancyCount::RedisAdapter,

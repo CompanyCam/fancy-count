@@ -34,7 +34,7 @@ module FancyCount
     private
 
     def adapter
-      @adapter ||= @config.adapter_class.new(@name)
+      @adapter ||= @config.adapter_class.new(@name, @config)
     end
   end
 end
